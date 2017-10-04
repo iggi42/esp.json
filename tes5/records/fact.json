@@ -11,36 +11,90 @@
     },
     {
       "def": {
-        "signature": "XNAM",
-        "name": "Interfaction Relations",
-        "type": "struct",
-        "members": [
-          {
-            "name": "Form ID - Faction",
-            "type": "uint32"
-          },
-          {
-            "name": "Mod",
-            "type": "int32"
-          },
-          {
-            "name": "Combat",
-            "type": "int32",
-            "combatFlags": {
-              "0": "Neutral",
-              "1": "Enemy",
-              "2": "Ally",
-              "3": "Friend"
+        "name": "Relations",
+        "type": "array",
+        "memberDef": {
+          "signature": "XNAM",
+          "name": "Relation",
+          "type": "struct",
+          "members": [
+            {
+              "name": "Form ID - Faction",
+              "type": "uint32"
+            },
+            {
+              "name": "Mod",
+              "type": "int32"
+            },
+            {
+              "name": "Combat",
+              "type": "uint32",
+              "formatter": "Enumeration",
+              "enumeration": {
+                "0x01": "Neutral",
+                "0x02": "Enemy",
+                "0x04": "Ally",
+                "0x08": "Friend"
+              }
             }
-          }
-        ]
+          ]
+        }
       }
-    }
+    },
     {
       "def": {
         "signature": "DATA",
-        "name": "Faction Data"
+        "name": "Faction Data",
+        "type": "struct",
+        "members": [
+          {
+            "name": "Flags",
+            "type": "uint32",
+            "formatter": "Flags",
+            "flags": [
+              "Hidden From NPC",
+              "Special Combat",
+              "Unknown 3",
+              "Unknown 4",
+              "Unknown 5",
+              "Unknown 6",
+              "Track Crime",
+              "Ignore Crimes: Murder",
+              "Ignore Crimes: Assault",
+              "Ignore Crimes: Stealing",
+              "Ignore Crimes: Trespass",
+              "Do Not Report Crimes Against Members",
+              "Crime Gold - Use Defaults",
+              "Ignore Crimes: Pickpocket",
+              "Vendor",
+              "Can Be Owner",
+              "Ignore Crimes: Werewolf",
+              "Unknown 18",
+              "Unknown 19",
+              "Unknown 20",
+              "Unknown 21",
+              "Unknown 22",
+              "Unknown 23",
+              "Unknown 24",
+              "Unknown 25",
+              "Unknown 26",
+              "Unknown 27",
+              "Unknown 28",
+              "Unknown 29",
+              "Unknown 30",
+              "Unknown 31",
+              "Unknown 32"
+            ]
+          }
+        ]
       }
+    },
+    {
+      "signature": "JAIL",
+      "name": "Exterior Jail Marker",
+      "type": "uint32",
+      "formatter": "CheckedFormID",
+      "validRefs": ["REFR"]
     }
   ]
 }
